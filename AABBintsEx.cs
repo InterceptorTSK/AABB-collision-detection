@@ -35,6 +35,17 @@ namespace Sys
         // or throws OverflowException
         // Note: int.MaxValue = 2_147_483_647
 
+        static AABBintsEx()
+        {
+            // [debug] Checks conditions and ensures algorithms work
+
+            if (XMin > XMax || YMin > YMax)
+                throw new System.Exception();
+
+            if (XMax - (long)XMin > 3037000499L || YMax - (long)YMin > 3037000499L)
+                throw new System.OverflowException();
+        }
+
 
         public readonly int X0, X1, Y0, Y1; // Ordered bounds
         public readonly int CX, CY;         // Center point (floors)
